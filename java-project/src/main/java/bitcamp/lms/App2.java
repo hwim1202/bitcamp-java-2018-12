@@ -33,7 +33,7 @@ public class App2 {
       
       System.out.printf("번호: %d\n이름: %s\n이메일: %s\n암호: %d\n사진: %s\n전화: %s\n", 번호, 이름, 이메일, 암호, 사진, 전화);
       
-      System.out.printf("가입일: %1$tY년%1$tB%1$td일\n", today);
+      System.out.printf("가입일: %1$tY년%1$tB1%1$td일\n", today);
       
       System.out.printf("조회수: 0");
       
