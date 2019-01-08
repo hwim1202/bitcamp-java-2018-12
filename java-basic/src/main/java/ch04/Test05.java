@@ -14,6 +14,5 @@ public class Test05 {
       int r4 = ++a * ++a;
       System.out.println(r4);
       
-      
     }
 }

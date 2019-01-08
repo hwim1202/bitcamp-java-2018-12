@@ -6,37 +6,51 @@ public class App2 {
             
       java.util.Scanner keyboard = new java.util.Scanner(System.in);
       
-      java.util.Date today = new java.util.Date();
+      int[] number = new int[10];
+      String[] name = new String[10];
+      String[] mail = new String[10];
+      String[] phone = new String[10];
+      String[] registeredDate= new String[10];
+      
+      int i = 0;
+      
+      
+      while (true) {
       
       System.out.print("번호? ");      
-      int 번호 = keyboard.nextInt();
-      
-      keyboard.nextLine();
+      number[i] = Integer.parseInt(keyboard.nextLine());
       
       System.out.print("이름? ");
-      String 이름= keyboard.nextLine();
+      name[i] = keyboard.nextLine();
       
       System.out.print("이메일? ");
-      String 이메일 = keyboard.nextLine();
-      
-      System.out.print("암호? ");
-      int 암호 = keyboard.nextInt();
-      
-      keyboard.nextLine();
-      
-      System.out.print("사진? ");
-      String 사진 = keyboard.nextLine();
+      mail[i] = keyboard.nextLine();
       
       System.out.print("전화? ");
-      String 전화 = keyboard.nextLine();
+      phone[i] = keyboard.nextLine();
       
+      System.out.print("가입일? ");
+      registeredDate[i] = keyboard.nextLine();
       
-      System.out.printf("번호: %d\n이름: %s\n이메일: %s\n암호: %d\n사진: %s\n전화: %s\n", 번호, 이름, 이메일, 암호, 사진, 전화);
+      i++;
       
-      System.out.printf("가입일: %1$tY년%1$tB1%1$td일\n", today);
+      System.out.print("계속 하시겠습니까? (y/n)");
+      String response = keyboard.nextLine();
       
-      System.out.printf("조회수: 0");
+      if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase(""))
+        continue;
       
+      if (!response.equalsIgnoreCase("y") && !response.equalsIgnoreCase(""))
+        break;
       
+      keyboard.close();
+       
+         }
+      for (int j = 0; j < i; j++) {        
+        System.out.printf("%d, %s, %s, %s, %s", 
+            number[j], name[j], mail[j], phone[j], registeredDate[j]);
+      }
+    
+    
     }
 }

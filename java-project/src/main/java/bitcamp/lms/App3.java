@@ -1,25 +1,52 @@
 
 package bitcamp.lms;
 
+import java.sql.Date;
+
 public class App3 {
     public static void main(String[] args) {
             
       java.util.Scanner keyboard = new java.util.Scanner(System.in);
       
-      java.util.Date today = new java.util.Date();
+      int[] number = new int[10];
+      String[] contents = new String[10];
+      Date[] createdDate = new Date[10];
+      int[] viewCount = new int[10];
+      
+      int i = 0;
+      
+      
+      while (true) {
       
       System.out.print("번호? ");      
-      int 번호 = keyboard.nextInt();
-      
-      keyboard.nextLine();
+      number[i] = Integer.parseInt(keyboard.nextLine());
       
       System.out.print("내용? ");
-      String 내용= keyboard.nextLine();
+      contents[i] = keyboard.nextLine();
       
-      System.out.printf("번호: %d\n내용: %s\n", 번호, 내용);
+      createdDate[i] = new Date(System.currentTimeMillis());
       
-      System.out.printf("작성일: %1$tY년%1$tB%1$td일", today);
+      viewCount[i] = 0;
       
+      i++;
       
+      System.out.print("계속 하시겠습니까? (y/n)");
+      String response = keyboard.nextLine();
+      
+      if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase(""))
+        continue;
+      
+      if (!response.equalsIgnoreCase("y") && !response.equalsIgnoreCase(""))
+        break;
+      
+      keyboard.close();
+       
+         }
+      for (int j = 0; j < i; j++) {        
+        System.out.printf("%d, %s, 작성일: %s, 조회수: %s", 
+            number[j], contents[j], createdDate[j], viewCount[j]);
+      }
+    
+    
     }
 }

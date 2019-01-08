@@ -10,5 +10,9 @@ public class Test07 {
       float r = f1 * f2 - 0.01f;
       System.out.println(Math.abs(r) <= Float.POSITIVE_INFINITY);
       
+      int[] a ;
+      a = new int[10] ;
+       
+      
     }
 }
