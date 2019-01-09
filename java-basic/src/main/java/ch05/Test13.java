@@ -40,8 +40,9 @@ public class Test13 {
         }
         System.out.println();
       }
-      System.out.println("-------------------------");
     }
+    System.out.println();
+    System.out.println("-------------------------");
     
     // continue
     for (int i = 1; i <= 10; i++) {
