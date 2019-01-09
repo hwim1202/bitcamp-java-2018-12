@@ -1,6 +1,8 @@
 
 package bitcamp.lms;
 
+import java.sql.Date;
+
 public class App2 {
     public static void main(String[] args) {
             
@@ -10,7 +12,7 @@ public class App2 {
       String[] name = new String[10];
       String[] mail = new String[10];
       String[] phone = new String[10];
-      String[] registeredDate= new String[10];
+      Date[] registeredDate= new Date[10];
       
       int i = 0;
       
@@ -30,7 +32,7 @@ public class App2 {
       phone[i] = keyboard.nextLine();
       
       System.out.print("가입일? ");
-      registeredDate[i] = keyboard.nextLine();
+      registeredDate[i] = Date.valueOf(keyboard.nextLine());
       
       i++;
       
