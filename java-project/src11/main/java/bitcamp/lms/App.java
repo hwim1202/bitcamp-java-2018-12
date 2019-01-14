@@ -3,7 +3,7 @@ package bitcamp.lms;
 
 public class App {
 
-  static java.util.Scanner keyboard = new java.util.Scanner(System.in);
+  static Scanner keyboard = new Scanner(System.in);
   
   static int i = 0;
 

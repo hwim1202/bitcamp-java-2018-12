@@ -53,7 +53,6 @@ public class App {
       else {
         System.out.println("실행할 수 없는 명령입니다.");
       }
-      keyboard.close();
     }
   }
 

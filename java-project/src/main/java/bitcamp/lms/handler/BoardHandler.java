@@ -1,19 +1,21 @@
-package bitcamp.lms;
+package bitcamp.lms.handler;
 
 import java.sql.Date;
+import java.util.Scanner;
+import bitcamp.lms.domain.Board;
 
 public class BoardHandler {
-
-  static java.util.Scanner keyboard = new java.util.Scanner(System.in);
-
-  final static int LENGTH = 10;
-
-  static Board[] Boards = new Board[LENGTH];
-
+  
+  static Board[] Boards = new Board[10];
+  static Scanner keyboard = new Scanner(System.in);
   static int i = 0;
-  static int j = 0;
 
-  static void addBoard() {
+  public static void main(String[] args) {
+    // TODO Auto-generated method stub
+
+  }
+  public static void addBoard() {
+
     Board boa = new Board();
     Boards[i] = boa;
     i++;
@@ -30,7 +32,7 @@ public class BoardHandler {
 
     System.out.println("저장하였습니다.");
   }
-  static void listBoard() {
+  public static void listBoard() {
     for (int j = 0; j < i; j++) {        
       System.out.printf("%d, %s, 작성일: %s, 조회수: %s\n", 
           Boards[j].number, Boards[j].contents, Boards[j].createdDate, Boards[j].viewCount);

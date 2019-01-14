@@ -1,27 +1,24 @@
-package bitcamp.lms;
+package bitcamp.lms.handler;
 
 import java.sql.Date;
+import java.util.Scanner;
+import bitcamp.lms.domain.Lesson;
 
 public class LessonHandler {
 
-  static java.util.Scanner keyboard = new java.util.Scanner(System.in);
-
-  final static int LENGTH = 10;
-
-  static Lesson[] Lessons = new Lesson[LENGTH];
-
+  static Lesson[] Lessons = new Lesson[10];
+  static Scanner keyboard = new Scanner(System.in);
   static int i = 0;
-  static int j = 0;
 
 
+  public static void main(String[] args) {
 
-  static void addLesson() {
+  }
+  public static void addLesson() {
 
     Lesson les = new Lesson();
 
-    Lessons[i] = les;
-
-    i++;
+    Lessons[i] = les;      
 
     System.out.print("번호? ");      
     les.number = Integer.parseInt(keyboard.nextLine());
@@ -46,10 +43,11 @@ public class LessonHandler {
 
     System.out.println("저장하였습니다.");
 
+    i++;
   }
-
-  static void listLesson() {
-    for (j=0 ; j < i; j++){
+  public static void listLesson() {
+    int j = 0;
+    for (j=0; j < i; j++) {
       System.out.printf("%d, %s, %s ~ %s, %d\n", 
           Lessons[j].number, Lessons[j].title, Lessons[j].startDate, Lessons[j].endDate, Lessons[j].totalHours);
       j++;
