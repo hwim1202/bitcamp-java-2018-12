@@ -4,16 +4,13 @@ import java.sql.Date;
 import java.util.Scanner;
 import bitcamp.lms.domain.Board;
 
-public class BoardHandler2 {
-  
-  static Board[] Boards = new Board[100];
-  static Scanner keyboard = new Scanner(System.in);
-  static int i = 0;
+public class BoardHandler {
 
-  public static void main(String[] args) {
+  Board[] Boards = new Board[10];
+  Scanner keyboard = new Scanner(System.in);
+  int i = 0;
 
-  }
-  public static void addBoard() {
+  public void addBoard() {
 
     Board boa = new Board();
     Boards[i] = boa;
@@ -31,7 +28,7 @@ public class BoardHandler2 {
 
     System.out.println("저장하였습니다.");
   }
-  public static void listBoard() {
+  public void listBoard() {
     for (int j = 0; j < i; j++) {        
       System.out.printf("%d, %s, 작성일: %s, 조회수: %s\n", 
           Boards[j].number, Boards[j].contents, Boards[j].createdDate, Boards[j].viewCount);
