@@ -7,21 +7,26 @@ import bitcamp.lms.handler.MemberHandler;
 
 public class App {
 
-  static int i = 0 ;
-
   static Scanner keyboard = new Scanner(System.in);
 
   public static void main(String[] args) {
     
     LessonHandler lessonhandler = new LessonHandler();
-    MemberHandler memberhandler = new MemberHandler();
-    BoardHandler boardhandler1 = new BoardHandler();
-    BoardHandler boardhandler2 = new BoardHandler();
+    lessonhandler.keyboard = keyboard;
     
-    while (i < 10) {
+    MemberHandler memberhandler = new MemberHandler();
+    memberhandler.keyboard = keyboard;
+
+    BoardHandler boardhandler1 = new BoardHandler();
+    boardhandler1.keyboard = keyboard;
+
+    BoardHandler boardhandler2 = new BoardHandler();
+    boardhandler2.keyboard = keyboard;
+
+    
+    while (true) {
       System.out.print("명령");
       String command = keyboard.nextLine();
-      i++;
       
       if (command.equals("/lesson/add")) {
         lessonhandler.addLesson();

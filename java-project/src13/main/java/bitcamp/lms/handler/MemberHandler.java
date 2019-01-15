@@ -6,7 +6,7 @@ import bitcamp.lms.domain.Member;
 
 public class MemberHandler {
 
-  Scanner keyboard = new Scanner(System.in);
+  public Scanner keyboard;
   Member[] Members = new Member[10];
   int i = 0;
 

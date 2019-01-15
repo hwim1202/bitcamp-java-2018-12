@@ -7,7 +7,7 @@ import bitcamp.lms.domain.Lesson;
 public class LessonHandler {
 
   Lesson[] Lessons = new Lesson[10];
-  Scanner keyboard = new Scanner(System.in);
+  public Scanner keyboard;
   int i = 0;
 
   public void addLesson() {
