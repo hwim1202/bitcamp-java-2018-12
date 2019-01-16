@@ -10,10 +10,6 @@ public class BoardHandler {
   static Scanner keyboard = new Scanner(System.in);
   static int i = 0;
 
-  public static void main(String[] args) {
-    // TODO Auto-generated method stub
-
-  }
   public static void addBoard() {
 
     Board boa = new Board();

@@ -7,7 +7,7 @@ import bitcamp.lms.domain.Board;
 public class BoardHandler {
 
   Board[] Boards = new Board[10];
-  public Scanner keyboard;
+  Scanner keyboard;
   int i = 0;
   
   public BoardHandler(Scanner keyboard) {

@@ -7,7 +7,7 @@ import bitcamp.lms.domain.Lesson;
 public class LessonHandler {
 
   Lesson[] Lessons = new Lesson[10];
-  public Scanner keyboard;
+  Scanner keyboard;
   int i = 0;
   
   public LessonHandler(Scanner keyboard) {
@@ -20,7 +20,7 @@ public class LessonHandler {
 
     Lessons[i] = les;      
 
-    System.out.print("번호? ");      
+    System.out.print("번호? ");
     les.number = Integer.parseInt(keyboard.nextLine());
 
     System.out.print("수업명? ");
