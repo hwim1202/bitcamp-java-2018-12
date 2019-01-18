@@ -10,6 +10,6 @@ public class Lesson {
   Date startDate;
   Date endDate;
   int totalHours;
-  int DayHours;
+  int dayHours;
   
 }

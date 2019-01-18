@@ -2,25 +2,24 @@ package bitcamp.lms.handler;
 
 import java.util.Arrays;
 
-public class ArrayList<E>{
-  
+public class ArrayList<E> {
   static final int DEFAULT_CAPACITY = 10;
-  E[] list;
+  Object[] list;
   int size = 0;
   
-  public ArrayList(E[] arr) {
+  
+  public ArrayList() {
     list = new Object[DEFAULT_CAPACITY];
   }
-  
-  public ArrayList(E[] arr, int initialCapacity) {
+  public ArrayList(int initialCapacity) {
     if (initialCapacity > DEFAULT_CAPACITY)
-      list = new Object[DEFAULT_CAPACITY];
+      list = new Object[initialCapacity];
     else
       list = new Object[DEFAULT_CAPACITY];
   }
-  
-  public E[] toArray() {
-    return Arrays.copyOf(list,size);
+  @SuppressWarnings("unchecked")
+  public E[] toArray(E[] sampleArr) {
+    return (E[]) Arrays.copyOf(list,size, sampleArr.getClass());
   }
   
   public void add(E obj) {
