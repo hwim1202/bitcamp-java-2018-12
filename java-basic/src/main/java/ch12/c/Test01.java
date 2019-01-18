@@ -1,24 +1,21 @@
-// 캡슐화(encapsulation)를 적용한 두번째 예
 package ch12.c;
 
 public class Test01 {
+
   public static void main(String[] args) {
+    My obj1 = new My();
     
-    Score s1 = new Score();
-    s1.name = "홍길동";
-    s1.kor = 100;
-    s1.eng = 90;
-    s1.math = 80;
-    s1.compute();
-    System.out.printf("총점=%d, 평균=%.1f\n", s1.getSum(), s1.getAver());
+    // private 접근 불가!
+    //obj1.v1 = 100; // 컴파일 오류!
+
+    // (default) 접근 가능 
+    obj1.v2 = 100; // OK! My 클래스와 Test01 클래스는 같은 패키지에 소속되어 있다.
     
-    Score s2 = new Score();
-    s2.name = "홍길동";
-    s2.kor = 100;
-    s2.eng = 90;
-    s2.math = 80;
-    s2.compute();
-    //s2.aver = 95.5f;
-    System.out.printf("총점=%d, 평균=%.1f\n", s2.getSum(), s2.getAver());
+    // protected 접근 가능
+    obj1.v3 = 100; // OK! My 클래스와 Test01 클래스는 같은 패키지에 소속되어 있다.
+    
+    // public 접근 가능
+    obj1.v4 = 100; // OK! 완전 공개이다.
   }
+
 }

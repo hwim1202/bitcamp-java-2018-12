@@ -1,0 +1,36 @@
+package bitcamp.lms.handler;
+
+import java.util.Arrays;
+import bitcamp.lms.domain.Lesson;
+
+public class LessonList {
+  static final int DEFAULT_CAPACITY = 10;
+  Lesson[] list;
+  int size = 0;
+  
+  
+  public LessonList() {
+    list = new Lesson[DEFAULT_CAPACITY];    
+  }
+  public LessonList(int initialCapacity) {
+    if (initialCapacity > DEFAULT_CAPACITY)
+      list = new Lesson[initialCapacity];
+    else
+      list = new Lesson[DEFAULT_CAPACITY];
+  }
+  
+  public Lesson[] toArray() {
+    return Arrays.copyOf(list,size);
+  }
+  
+  public void add(Lesson lesson) {
+    if (size >= list.length) {
+      int oldCapacity = list.length;
+      int newCapacity = oldCapacity + (oldCapacity >> 1);
+      list = Arrays.copyOf(list, newCapacity);
+    }
+    
+    list[size++] = lesson;
+    
+  }
+}
