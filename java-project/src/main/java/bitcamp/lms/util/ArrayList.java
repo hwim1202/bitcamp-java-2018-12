@@ -1,4 +1,4 @@
-package bitcamp.lms.handler;
+package bitcamp.lms.util;
 
 import java.util.Arrays;
 
@@ -18,7 +18,7 @@ public class ArrayList<E> {
   }
   @SuppressWarnings("unchecked")
   public E[] toArray(E[] sampleArr) {
-    return (E[]) Arrays.copyOf(list,size, sampleArr.getClass());
+    return (E[]) Arrays.copyOf(list, size, sampleArr.getClass());
   }
   
   public void add(E obj) {
@@ -59,11 +59,15 @@ public class ArrayList<E> {
     @SuppressWarnings("unchecked")
     E old = (E)list[index];
     
-    int newSize = size - 1;       
+    for (int i = index; i < size - 1; i++)
+      list[i] = list[i + 1];
     
-    System.arraycopy(list, index+1, list, index, newSize-index);
-    list[newSize] = null;
+    size--;
+    
     return old;
     
+  }
+  public int size() {
+    return this.size;
   }
 }
