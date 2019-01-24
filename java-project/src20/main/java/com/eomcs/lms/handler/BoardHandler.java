@@ -1,11 +1,11 @@
-package bitcamp.lms.handler;
+package com.eomcs.lms.handler;
 import java.sql.Date;
 import java.util.Scanner;
-import bitcamp.lms.domain.Board;
-import bitcamp.lms.util.LinkedList;
+import com.eomcs.lms.domain.Board;
+import com.eomcs.util.LinkedList;
 
 public class BoardHandler {
-   
+  
   Scanner keyboard;
   LinkedList<Board> list;
   
@@ -15,8 +15,7 @@ public class BoardHandler {
   }
   
   public void listBoard() {
-    Board[] boards = new Board[list.size()];
-    list.toArray(boards);
+    Board[] boards = list.toArray(new Board[] {});
     for (Board board : boards) {
       System.out.printf("%3d, %-20s, %s, %d\n", 
           board.getNo(), board.getContents(), 

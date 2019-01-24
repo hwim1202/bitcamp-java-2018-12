@@ -1,8 +1,8 @@
-package bitcamp.lms.handler;
+package com.eomcs.lms.handler;
 import java.sql.Date;
 import java.util.Scanner;
-import bitcamp.lms.domain.Lesson;
-import bitcamp.lms.util.LinkedList;
+import com.eomcs.lms.domain.Lesson;
+import com.eomcs.util.LinkedList;
 
 public class LessonHandler {
 
@@ -15,7 +15,7 @@ public class LessonHandler {
   }
 
   public void listLesson() {
-    Lesson[] lessons = list.toArray(new Lesson[0]);
+    Lesson[] lessons = list.toArray(new Lesson[] {});
     for (Lesson lesson : lessons) {
       System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
           lesson.getNo(), lesson.getTitle(), 

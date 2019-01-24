@@ -1,24 +1,22 @@
-package bitcamp.lms.domain;
-
+package com.eomcs.lms.domain;
 import java.sql.Date;
 
 public class Board implements Cloneable {
-  
-  private int number;
+  private int no;
   private String contents;
   private Date createdDate;
   private int viewCount;
   
   @Override
-  protected Object clone() throws CloneNotSupportedException {
-    return super.clone();
+  public Board clone() throws CloneNotSupportedException {
+    return (Board) super.clone();
   }
   
-  public int getNumber() {
-    return number;
+  public int getNo() {
+    return no;
   }
-  public void setNumber(int number) {
-    this.number = number;
+  public void setNo(int no) {
+    this.no = no;
   }
   public String getContents() {
     return contents;
@@ -38,5 +36,6 @@ public class Board implements Cloneable {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
-
+  
+  
 }

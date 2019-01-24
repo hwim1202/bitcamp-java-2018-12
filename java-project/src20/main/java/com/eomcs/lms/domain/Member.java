@@ -1,4 +1,4 @@
-package bitcamp.lms.domain;
+package com.eomcs.lms.domain;
 import java.sql.Date;
 
 public class Member implements Cloneable {
