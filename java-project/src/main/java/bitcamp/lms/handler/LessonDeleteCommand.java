@@ -11,9 +11,9 @@ public class LessonDeleteCommand implements Command {
   public LessonDeleteCommand(Scanner keyboard, List<Lesson> list) {
     this.keyboard = keyboard;
     this.list = list;
-    
   }
-  
+
+  @Override
   public void execute() {
     System.out.print("번호? ");
     int no = Integer.parseInt(keyboard.nextLine());

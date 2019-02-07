@@ -3,17 +3,17 @@ import java.util.List;
 import java.util.Scanner;
 import bitcamp.lms.domain.Member;
 
-public class MemberDetailCommand implements Command{
+public class MemberDetailCommand implements Command {
   
   Scanner keyboard;
   List<Member> list;
   
   public MemberDetailCommand(Scanner keyboard, List<Member> list) {
     this.keyboard = keyboard;
-    //this.list = new LinkedList<>();
     this.list = list;
   }
   
+  @Override
   public void execute() {
     System.out.print("번호? ");
     int no = Integer.parseInt(keyboard.nextLine());
@@ -33,7 +33,7 @@ public class MemberDetailCommand implements Command{
     System.out.printf("전화: %s\n", member.getTel());
     System.out.printf("가입일: %s\n", member.getRegisteredDate());
   }
-  
+
   private int indexOfMember(int no) {
     for (int i = 0; i < list.size(); i++) {
       Member m = list.get(i);

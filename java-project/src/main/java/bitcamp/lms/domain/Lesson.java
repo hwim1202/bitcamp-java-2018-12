@@ -1,7 +1,11 @@
 package bitcamp.lms.domain;
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Lesson implements Cloneable {
+public class Lesson implements Cloneable, Serializable {
+  
+  private static final long serialVersionUID = 1L;
+  
   private int no;
   private String title;
   private String contents;
@@ -56,26 +60,6 @@ public class Lesson implements Cloneable {
   }
   public void setDayHours(int dayHours) {
     this.dayHours = dayHours;
-  }
-  /*
-   * 
-   * @param csv "번호,제목,내용,시작일,종료일,총강의시간,일강의시간"
-   * @return
-   */
-  public static Lesson valueOf(String csv) {
-    
-    String[] values = csv.split(",");
-    
-    Lesson lesson = new Lesson();
-    lesson.setNo(Integer.parseInt(values[0]));
-    lesson.setTitle(values[1]);
-    lesson.setContents(values[2]);
-    lesson.setStartDate(Date.valueOf(values[3]));
-    lesson.setEndDate(Date.valueOf(values[4]));
-    lesson.setTotalHours(Integer.parseInt(values[5]));
-    lesson.setDayHours(Integer.parseInt(values[6]));
-    
-    return lesson;
   }
   
   

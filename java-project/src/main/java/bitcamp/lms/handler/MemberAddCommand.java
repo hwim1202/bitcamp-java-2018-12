@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import bitcamp.lms.domain.Member;
 
-public class MemberAddCommand implements Command{
+public class MemberAddCommand implements Command {
   
   Scanner keyboard;
   List<Member> list;
@@ -13,7 +13,8 @@ public class MemberAddCommand implements Command{
     this.keyboard = keyboard;
     this.list = list;
   }
-
+  
+  @Override
   public void execute() {
     Member member = new Member();
     
