@@ -44,6 +44,7 @@ public class App {
     context.put("memberList", new LinkedList<Member>());
     context.put("boardList", new ArrayList<Board>());
   }
+  
   static Scanner keyboard = new Scanner(System.in);
   static Stack<String> commandHistory = new Stack<>();
   static Queue<String> commandHistory2 = new LinkedList<>();
