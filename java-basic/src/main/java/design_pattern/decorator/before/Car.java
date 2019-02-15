@@ -1,7 +1,6 @@
 package design_pattern.decorator.before;
 
 public abstract class Car {
-  
   protected int speed;
   
   public void start() {

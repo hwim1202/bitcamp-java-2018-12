@@ -22,8 +22,16 @@ public class Directory extends Node {
   public Node remove(int index) {
     return childs.remove(index);
   }
-
+  
   public Node get(int index) {
     return childs.get(index);
   }
+  
 }
+
+
+
+
+
+
+

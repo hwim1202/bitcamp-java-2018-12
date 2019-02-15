@@ -1,6 +1,7 @@
 package design_pattern.command.before;
 
 public class CommandHandler {
+  
   public void addBoard() {
     System.out.println("게시물 입력 처리!");
   }
@@ -20,7 +21,6 @@ public class CommandHandler {
   public void deleteBoard() {
     System.out.println("게시물 삭제 처리!");
   }
-  
   public void addMember() {
     System.out.println("회원 입력 처리!");
   }
@@ -39,6 +39,5 @@ public class CommandHandler {
   
   public void deleteMember() {
     System.out.println("회원 삭제 처리!");
-  }
-  
+  }  
 }

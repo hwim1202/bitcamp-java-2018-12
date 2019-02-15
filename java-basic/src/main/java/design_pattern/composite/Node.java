@@ -1,7 +1,6 @@
 package design_pattern.composite;
 
 public abstract class Node {
-  
   protected String title;
   
   public String getTitle() {
@@ -9,4 +8,5 @@ public abstract class Node {
   }
   
   public abstract void getFileInfo();
+  
 }
