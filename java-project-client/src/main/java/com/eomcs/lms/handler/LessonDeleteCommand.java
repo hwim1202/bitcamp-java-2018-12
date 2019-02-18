@@ -1,24 +1,25 @@
 package com.eomcs.lms.handler;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Scanner;
-import com.eomcs.lms.agent.LessonAgent;
+import com.eomcs.lms.proxy.LessonDaoProxy;
 
 public class LessonDeleteCommand implements Command {
 
   Scanner keyboard;
-
-  public LessonDeleteCommand(Scanner keyboard) {
+  LessonDaoProxy lessonDao;
+  
+  public LessonDeleteCommand(Scanner keyboard, LessonDaoProxy lessonAgent) {
     this.keyboard = keyboard;
+    this.lessonDao = lessonAgent;
   }
+  
 
   @Override
-  public void execute(ObjectInputStream in, ObjectOutputStream out) {
+  public void execute() {
     System.out.print("번호? ");
     int no = Integer.parseInt(keyboard.nextLine());
 
     try {
-      LessonAgent.delete(no, in, out);
+      lessonDao.delete(no);
       System.out.println("삭제했습니다.");
       
     } catch (Exception e) {

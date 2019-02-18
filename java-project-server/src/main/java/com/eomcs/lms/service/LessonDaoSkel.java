@@ -2,33 +2,33 @@ package com.eomcs.lms.service;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import com.eomcs.lms.dao.MemberDao;
-import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.dao.LessonDao;
+import com.eomcs.lms.domain.Lesson;
 
-public class MemberService implements Service {
+public class LessonDaoSkel implements Service {
 
-  MemberDao memberDao;
+  LessonDao lessonDao;
   
-  public MemberService(MemberDao memberDao) {
-    this.memberDao = memberDao;
+  public LessonDaoSkel(LessonDao lessonDao) {
+    this.lessonDao = lessonDao;
   }
   
   public void execute(String request, ObjectInputStream in, ObjectOutputStream out) throws Exception {
 
     switch (request) {
-      case "/member/add":
+      case "/lesson/add":
         add(in, out);
         break;
-      case "/member/list":
+      case "/lesson/list":
         list(in, out);
         break;
-      case "/member/detail":
+      case "/lesson/detail":
         detail(in, out);
         break;
-      case "/member/update":
+      case "/lesson/update":
         update(in, out);
         break;
-      case "/member/delete":
+      case "/lesson/delete":
         delete(in, out);
         break;  
       default:
@@ -40,7 +40,7 @@ public class MemberService implements Service {
   private void add(ObjectInputStream in, ObjectOutputStream out) throws Exception {
     out.writeUTF("OK");
     out.flush();
-    memberDao.insert((Member)in.readObject());
+    lessonDao.insert((Lesson)in.readObject());
     out.writeUTF("OK");
   }
 
@@ -48,7 +48,7 @@ public class MemberService implements Service {
     out.writeUTF("OK");
     out.flush();
     out.writeUTF("OK");
-    out.writeUnshared(memberDao.findAll());
+    out.writeUnshared(lessonDao.findAll());
   }
 
   private void detail(ObjectInputStream in, ObjectOutputStream out) throws Exception {
@@ -56,7 +56,7 @@ public class MemberService implements Service {
     out.flush();
     int no = in.readInt();
 
-    Member obj = memberDao.findByNo(no);
+    Lesson obj = lessonDao.findByNo(no);
     if (obj == null) { 
       out.writeUTF("FAIL");
       return;
@@ -69,9 +69,9 @@ public class MemberService implements Service {
   private void update(ObjectInputStream in, ObjectOutputStream out) throws Exception {
     out.writeUTF("OK");
     out.flush();
-    Member member = (Member) in.readObject();
+    Lesson lesson = (Lesson) in.readObject();
 
-    if (memberDao.update(member) == 0) {
+    if (lessonDao.update(lesson) == 0) {
       out.writeUTF("FAIL");
       return;
     }
@@ -84,7 +84,7 @@ public class MemberService implements Service {
     out.flush();
     int no = in.readInt();
 
-    if (memberDao.delete(no) == 0) {
+    if (lessonDao.delete(no) == 0) {
       out.writeUTF("FAIL");    
       return;
     }
