@@ -1,15 +1,15 @@
 package com.eomcs.lms.handler;
 import java.sql.Date;
 import java.util.Scanner;
+import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
-import com.eomcs.lms.proxy.LessonDaoProxy;
 
 public class LessonAddCommand implements Command {
 
   Scanner keyboard;
-  LessonDaoProxy lessonDao;
+  LessonDao lessonDao;
   
-  public LessonAddCommand(Scanner keyboard, LessonDaoProxy lessonAgent) {
+  public LessonAddCommand(Scanner keyboard, LessonDao lessonAgent) {
     this.keyboard = keyboard;
     this.lessonDao = lessonAgent;
   }

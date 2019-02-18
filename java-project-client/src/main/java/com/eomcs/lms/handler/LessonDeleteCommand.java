@@ -1,13 +1,13 @@
 package com.eomcs.lms.handler;
 import java.util.Scanner;
-import com.eomcs.lms.proxy.LessonDaoProxy;
+import com.eomcs.lms.dao.LessonDao;
 
 public class LessonDeleteCommand implements Command {
 
   Scanner keyboard;
-  LessonDaoProxy lessonDao;
+  LessonDao lessonDao;
   
-  public LessonDeleteCommand(Scanner keyboard, LessonDaoProxy lessonAgent) {
+  public LessonDeleteCommand(Scanner keyboard, LessonDao lessonAgent) {
     this.keyboard = keyboard;
     this.lessonDao = lessonAgent;
   }

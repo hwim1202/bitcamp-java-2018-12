@@ -1,15 +1,15 @@
 package com.eomcs.lms.handler;
 import java.sql.Date;
 import java.util.Scanner;
+import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
-import com.eomcs.lms.proxy.BoardDaoProxy;
 
 public class BoardAddCommand implements Command {
   
   Scanner keyboard;
-  BoardDaoProxy boardDao;
+  BoardDao boardDao;
   
-  public BoardAddCommand(Scanner keyboard, BoardDaoProxy boardAgent) {
+  public BoardAddCommand(Scanner keyboard, BoardDao boardAgent) {
     this.keyboard = keyboard;
     this.boardDao = boardAgent;
   }

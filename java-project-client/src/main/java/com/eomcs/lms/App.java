@@ -1,4 +1,4 @@
-// 13단계: stateful 방식을 stateless 방식으로 전환하기 
+// 15단계 : 여러 클라이언트 요청을 처리할때의 문제점과 해결책 (멀티 스레드 사용)
 package com.eomcs.lms;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -50,7 +50,7 @@ public class App {
     commandMap.put("/member/update", new MemberUpdateCommand(keyboard, memberAgent));
     commandMap.put("/member/delete", new MemberDeleteCommand(keyboard, memberAgent));
 
-    BoardDaoProxy boardAgent = new BoardDaoProxy("localhost", 8888, "/board");
+    BoardDaoProxy boardAgent = new BoardDaoProxy("192.168.0.31", 8888, "/board");
     commandMap.put("/board/add", new BoardAddCommand(keyboard, boardAgent));
     commandMap.put("/board/list", new BoardListCommand(keyboard, boardAgent));
     commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boardAgent));
