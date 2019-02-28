@@ -53,7 +53,7 @@ from test1;
 
 /* as를 생략해도 된다.*/
 select 
-    no as num, 
+    no num, 
     concat(name,'(',class,')') title 
 from test1; 
 ``` 

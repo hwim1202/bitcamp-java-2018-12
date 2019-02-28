@@ -208,7 +208,8 @@ DBMS 중에는 고정 크기인 컬럼의 값을 비교할 때 빈자리까지 �
 
 > create table test1(
   c1 char(1),
-  c2 int
+  c2 int,
+  c3 boolean
   );
 
 
