@@ -1,9 +1,3 @@
-// 3단계: 명령어에 서버 주소와 포트 번호 포함하기
-//    예) localhost:8888/board/list
-// => 만약 포트 번호를 생략한다면 기본이 8888이다.
-//    예) localhost/board/list
-//    예) 192.168.0.1/board/list
-// 
 package com.eomcs.lms;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

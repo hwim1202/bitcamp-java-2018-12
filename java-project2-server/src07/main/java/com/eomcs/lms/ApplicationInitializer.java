@@ -32,9 +32,11 @@ import com.eomcs.lms.handler.PhotoBoardDetailCommand;
 import com.eomcs.lms.handler.PhotoBoardListCommand;
 import com.eomcs.lms.handler.PhotoBoardUpdateCommand;
 
+// App 객체의 상태가 변경될 때 마다 보고 받는 옵저버가 되려면 
+// ApplicationContextListener 규격에 따라 작성해야 한다.
 public class ApplicationInitializer implements ApplicationContextListener {
 
-  public static Connection con;
+  Connection con;
   
   @Override
   public void contextInitialized(Map<String, Object> context) {
@@ -42,8 +44,6 @@ public class ApplicationInitializer implements ApplicationContextListener {
       // DAO가 사용할 커넥션 객체를 여기서 준비한다.
       con = DriverManager.getConnection(
           "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
-      
-      con.setAutoCommit(false);
       
       // DAO 객체 준비
       LessonDaoImpl lessonDao = new LessonDaoImpl(con);
@@ -93,3 +93,9 @@ public class ApplicationInitializer implements ApplicationContextListener {
     }   
   }
 }
+
+
+
+
+
+
