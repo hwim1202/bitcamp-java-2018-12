@@ -7,23 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoFile;
+import com.eomcs.util.DataSource;
 
 public class PhotoFileDaoImpl implements PhotoFileDao {
-  Connection con;
-
-  public PhotoFileDaoImpl(Connection con) {
-    this.con = con;
+  
+  DataSource dataSource;
+  
+  public PhotoFileDaoImpl(DataSource dataSource) {
+    this.dataSource = dataSource;
   }
-//
+  //
   @Override
   public List<PhotoFile> findByPhotoBoardNo(int photoBoardNo) {
-    try (PreparedStatement stmt = con.prepareStatement(
-        "select photo_file_id, photo_id, file_path from lms_photo_file"
-        +" where photo_id = ?"
-            + " order by photo_file_id asc")) {
+    Connection con = dataSource.getConnection();
+    try (
+        PreparedStatement stmt = con.prepareStatement(
+            "select photo_file_id, photo_id, file_path from lms_photo_file"
+                +" where photo_id = ?"
+                + " order by photo_file_id asc")) {
 
       stmt.setInt(1, photoBoardNo);
-      
+
       try (ResultSet rs = stmt.executeQuery()) {
 
         ArrayList<PhotoFile> list = new ArrayList<>();
@@ -42,23 +46,27 @@ public class PhotoFileDaoImpl implements PhotoFileDao {
       throw new RuntimeException(e);
     }
   }
-//
+  //
   @Override
   public void insert(PhotoFile photoFile) {
-    try (PreparedStatement stmt = con.prepareStatement(
-        "insert into lms_photo_file(file_path, photo_id) values(?,?)" )) {
+    Connection con = dataSource.getConnection();
+    try (
+        PreparedStatement stmt = con.prepareStatement(
+            "insert into lms_photo_file(file_path, photo_id) values(?,?)" )) {
 
       stmt.setString(1, photoFile.getFilepath());
       stmt.setInt(2, photoFile.getPhotoBoardNo());
       stmt.executeUpdate();
-      
+
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
   }
   public int deleteByPhotoBoardNo(int photoBoardNo) {
-    try (PreparedStatement stmt = con.prepareStatement(
-        "delete from lms_photo_file where photo_id = ?")) {
+    Connection con = dataSource.getConnection();
+    try (
+        PreparedStatement stmt = con.prepareStatement(
+            "delete from lms_photo_file where photo_id = ?")) {
 
       stmt.setInt(1, photoBoardNo);
 
