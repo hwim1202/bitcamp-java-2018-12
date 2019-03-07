@@ -17,20 +17,36 @@
 	</select>
 
 	<select id="select2" resultMap="boardMap" parameterType="int">
-		select * from x_board where board_id = #{value}
+		select *
+		from x_board where board_id = #{value}
 	</select>
 
 	<select id="select3" resultMap="boardMap" parameterType="string">
-		select * from x_board where title like concat('%', #{value}, '%')
+		select *
+		from x_board where title like concat('%', #{value}, '%')
 	</select>
-	
+
 	<insert id="insert1" parameterType="board">
-	insert into x_board(title,contents) values(#{title}, #{contents})
+		insert into x_board(title,contents) values(#{title}, #{contents})
 	</insert>
-	
-	 <insert id="insert2" parameterType="hashmap">
-  insert into x_board(title,contents) values(#{title}, #{contents})
-  </insert>
+
+	<insert id="insert2" parameterType="hashmap">
+		insert into x_board(title,contents) values(#{title}, #{contents})
+	</insert>
+
+	<update id="update" parameterType="board">
+		update x_board set title = #{title}, contents = #{contents} where board_id =
+		#{no}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from x_board where board_id = #{value}
+	</delete>
+
+	<insert id="insert3" parameterType="board"
+		useGeneratedKeys="true" keyColumn="board_id" keyProperty="no">
+		insert into x_board(title,contents) values(#{title}, #{contents})
+	</insert>
 
 </mapper>
 
