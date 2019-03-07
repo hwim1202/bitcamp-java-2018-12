@@ -26,7 +26,7 @@
 		</if>
 	</select>
 
-	<select id="select3" resultMap="boardMap" parameterType="int">
+	<select id="select3" resultMap="boardMap" parameterType="map">
 		select * from x_board where 1=0
 		<if test="no != null">
 			or board_id = #{no}
@@ -39,7 +39,7 @@
 		</if>
 	</select>
 
-	<select id="select4" resultMap="boardMap" parameterType="int">
+	<select id="select4" resultMap="boardMap" parameterType="map">
 		select * from x_board
 		<where>
 			<if test="no != null">
@@ -54,7 +54,7 @@
 		</where>
 	</select>
 
-	<select id="select5" resultMap="boardMap" parameterType="int">
+	<select id="select5" resultMap="boardMap" parameterType="map">
 		select * from x_board where
 		<choose>
 			<when test="no != null">
@@ -72,14 +72,50 @@
 		</choose>
 	</select>
 
-	<select id="select6" resultMap="boardMap" parameterType="string">
+	<select id="select6" resultMap="boardMap" parameterType="map">
 		select * from x_board
-		<if test="null">
-			where title like concat('%', #{value} ,'%')
-			or contents
-			like concat('%', #{value}, '%')
-			order by board_id desc
+		<trim prefix="where" prefixOverrides="OR|AND">
+			<if test="no != null">
+				board_id = #{no}
+			</if>
+			<if test="title != null">
+				or title like concat('%', #{title}, '%')
+			</if>
+			<if test="contents != null">
+				or contents like concat('%', #{contents}, '%')
+			</if>
+		</trim>
+	</select>
+
+	<select id="select7_error" resultMap="boardMap"
+		parameterType="map">
+		select * from x_board order by
+		<if test="column != null">
+			#{column} #{sort}
 		</if>
+	</select>
+
+	<select id="select7_ok" resultMap="boardMap" parameterType="map">
+		select * from x_board order by
+		<if test="column != null">
+			${column} ${sort}
+		</if>
+	</select>
+
+	<update id="update1" parameterType="map">
+		update x_board
+		<set>
+			<if test="title != null"> title = #{title}, </if>
+			<if test="contents != null"> contents = #{contents} </if>
+		</set>
+		where board_id = #{no}
+	</update>
+
+	<select id="select9" resultMap="boardMap" parameterType="list">
+		select * from x_board where board_id in (5, 7, 10, 12, 28)
+		<foreach collection="noList" item="value" open="(" close=")" separator=",">
+			#{value}
+		</foreach>
 	</select>
 
 </mapper>
