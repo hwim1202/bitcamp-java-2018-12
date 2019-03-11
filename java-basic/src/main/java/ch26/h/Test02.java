@@ -24,9 +24,6 @@ public class Test02 {
     int no = Integer.parseInt(keyboard.nextLine());
     keyboard.close();
     
-    // 조인을 사용하지 않고 자식 테이블의 데이터를 조회하려면 
-    // 다음과 같이 여러 번 SQL을 실행해야 한다.
-    //
     Board board = sqlSession.selectOne("board.selectBoardWithAttachFile", no);
     System.out.println(board);
     

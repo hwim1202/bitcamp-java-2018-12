@@ -24,7 +24,7 @@ public class ClientApp {
         return;
       } 
       
-      commandHistory.push(input);
+      commandHistory.push(input); 
       commandHistory2.offer(input);
       
       if (input.equals("history")) {
