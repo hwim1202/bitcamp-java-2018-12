@@ -10,15 +10,36 @@ repositories {
 
 dependencies {
 
-    // https://mvnrepository.com/artifact/org.mybatis/mybatis
-    compile group: 'org.mybatis', name: 'mybatis', version: '3.5.0'
-
     implementation 'com.google.guava:guava:26.0-jre'
     testImplementation 'junit:junit:4.12'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.7'
     
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.5.0'
+    // Mybatis
+    
     // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
+    // Maria DB
+    
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    compile group: 'org.springframework', name: 'spring-context', version: '5.1.5.RELEASE'
+    // Spring IoC 라이브러리
+    
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.0'
+    // Mybatis Spring 연동 라이브러리
+    
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.6.0'
+    // DataSource(DB 커넥션풀) 라이브러리
+    
+    // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.5.RELEASE'
+    // Spring JDBC 관련 라이브러리(트랜잭션 라이브러리를 자동으로 추가한다)
+    
+    
+    
 }
 
 mainClassName = 'bitcamp.lms.App'
