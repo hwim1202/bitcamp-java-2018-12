@@ -41,6 +41,16 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/5.1.5.RELEASE/9f42597b821f59087bf759695992c5ea8a1fcf0d/spring-context-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/5.1.5.RELEASE/d39299241a2c8353d83f0f0c84d3677973da7c57/spring-context-5.1.5.RELEASE.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/65dfd2c47380bf72ec62a5b8c4ceb78a4eda1a53/javax.annotation-api-1.3.2-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/934c04d3cfef185a8008e7bf34331b79730a9d43/javax.annotation-api-1.3.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/26.0-jre/2e35b51c759ae1a6edbb967b65c525105536d382/guava-26.0-jre-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/26.0-jre/6a806eff209f36f635f943e16d97491f00f6bfab/guava-26.0-jre.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
@@ -57,6 +67,26 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.11/bce4ba84fd527950e35040b20a991c63e90e2850/commons-codec-1.11-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.11/3acb4705652e16236558f0f4f2192cc33c3bd189/commons-codec-1.11.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.1.5.RELEASE/992ff1c4ce798a61c8d060c3edc7b08742fa36a/spring-aop-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.1.5.RELEASE/5e6ab23bc14369b0e29881afd85ad13b79846a0e/spring-aop-5.1.5.RELEASE.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/5.1.5.RELEASE/65b8846a1d79cfff2bcd44e0d40c5f95c5cb2d14/spring-beans-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/5.1.5.RELEASE/58b10c61f6bf2362909d884813c4049b657735f5/spring-beans-5.1.5.RELEASE.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/5.1.5.RELEASE/f03464511a63a756a470827c890de12b733412ba/spring-expression-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/5.1.5.RELEASE/b728a06924560ee69307a52d100e6b156d9a4a80/spring-expression-5.1.5.RELEASE.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/5.1.5.RELEASE/407c8f57c15605a13c76a869357181825a7a5db1/spring-core-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/5.1.5.RELEASE/aacc4555108f3da913a58114b2aebc819f58cce4/spring-core-5.1.5.RELEASE.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
@@ -82,6 +112,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.14/886474da3f761d39fcbb723d97ecc5089e731f42/animal-sniffer-annotations-1.14-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.14/775b7e22fb10026eed3f86e8dc556dfafe35f2d5/animal-sniffer-annotations-1.14.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.1.5.RELEASE/6f3212c91ac78f8cc4bcaf600f624f92a6287ca6/spring-jcl-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.1.5.RELEASE/5cbd44d11a031c64c788edf1f99706b31c434469/spring-jcl-5.1.5.RELEASE.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
