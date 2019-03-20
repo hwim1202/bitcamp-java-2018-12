@@ -51,6 +51,16 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/2.0.0/d5ef1bf42579d1e494e04ccc7c0908fb90eb5f34/mybatis-spring-2.0.0-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/2.0.0/da66c4309603671d9dad31ec8187ccaa520cf79c/mybatis-spring-2.0.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.5.RELEASE/f0168c568975bcd92874fafe0a4cf8eff952b543/spring-jdbc-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.1.5.RELEASE/67a6be20d032276a12a91fce4fe8b13ccc8c95d/spring-jdbc-5.1.5.RELEASE.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/26.0-jre/2e35b51c759ae1a6edbb967b65c525105536d382/guava-26.0-jre-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/26.0-jre/6a806eff209f36f635f943e16d97491f00f6bfab/guava-26.0-jre.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
@@ -72,6 +82,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.1.5.RELEASE/992ff1c4ce798a61c8d060c3edc7b08742fa36a/spring-aop-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.1.5.RELEASE/5e6ab23bc14369b0e29881afd85ad13b79846a0e/spring-aop-5.1.5.RELEASE.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/5.1.5.RELEASE/a0b2d9548895774bea629d0232da913dcbac96eb/spring-tx-5.1.5.RELEASE-sources.jar" kind="lib" path="/home/hyunwoo/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/5.1.5.RELEASE/c2d39bf1f87a7b9f74a199b3aa37ffc8be84b918/spring-tx-5.1.5.RELEASE.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
