@@ -1,171 +1,194 @@
 package com.eomcs.lms.handler;
 
+import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.eomcs.lms.context.RequestMapping;
-import com.eomcs.lms.dao.LessonDao;
-import com.eomcs.lms.dao.PhotoBoardDao;
-import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.Lesson;
-import com.eomcs.lms.domain.PhotoBoard;
+import com.eomcs.lms.service.LessonService;
 
 @Component
 public class LessonCommand {
 
-  LessonDao lessonDao;
-  PhotoBoardDao photoBoardDao;
-  PhotoFileDao photoFileDao;
-  PlatformTransactionManager txManager;
+  LessonService lessonService;
 
-  public LessonCommand(
-      LessonDao lessonDao,
-      PhotoBoardDao photoBoardDao,
-      PhotoFileDao photoFileDao,
-      PlatformTransactionManager txManager) {
-    this.lessonDao = lessonDao;
-    this.photoBoardDao = photoBoardDao;
-    this.photoFileDao = photoFileDao;
-    this.txManager = txManager;
+  public LessonCommand(LessonService lessonService) {
+    this.lessonService = lessonService;
   }
 
-
   @RequestMapping("/lesson/list")
-  public void list(Response response) throws Exception {
-    List<Lesson> lessons = lessonDao.findAll();
+  public void list(ServletRequest request, ServletResponse response) throws Exception {
+    PrintWriter out = response.getWriter();
+    List<Lesson> lessons = lessonService.list();
+
+    out.println("<html><head><title>수업 목록</title></head>");
+    out.println("<body><h1>수업 목록</h1>");
+    out.println("<p><a href='/lesson/form'>새 수업</a></p>");
+    out.println("<table border='1'>");
+    out.println("<tr> <th>번호</th> <th>제목</th> <th>내용</th> <th>시작일</th> <th>종료일</th> <th>총수업시간</th> <th>일수업시간</th> </tr>");
     for (Lesson lesson : lessons) {
-      response.println(String.format("%3d, %-15s, %10s ~ %10s, %4d", 
+      response.println(String.format("<tr> <td>%d</td> <td><a href='/lesson/detail?no=%1$d'>%s</a></td> "
+          + "<td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> </tr>", 
           lesson.getNo(), lesson.getTitle(), 
-          lesson.getStartDate(), lesson.getEndDate(), lesson.getTotalHours()));
+          lesson.getContents(), lesson.getStartDate(), lesson.getEndDate(), lesson.getTotalHours(), lesson.getDayHours()));
     }
+    out.println("</table></body></html>");
   }
 
   @RequestMapping("/lesson/add")
-  public void add(Response response) throws Exception {
+  public void add(ServletRequest request, ServletResponse response) throws Exception {
     Lesson lesson = new Lesson();
-    lesson.setTitle(response.requestString("수업명?"));
-    lesson.setContents(response.requestString("설명?"));
-    lesson.setStartDate(response.requestDate("시작일?"));
-    lesson.setEndDate(response.requestDate("종료일?"));
-    lesson.setTotalHours(response.requestInt("총수업시간?"));
-    lesson.setDayHours(response.requestInt("일수업시간?"));
+    lesson.setTitle(request.getParameter("title"));
+    lesson.setContents(request.getParameter("contents"));
+    lesson.setStartDate(Date.valueOf(request.getParameter("startDate")));
+    lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
+    lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
+    lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
 
-    lessonDao.insert(lesson);
-    response.println("저장하였습니다.");
+    lessonService.add(lesson);
+
+    PrintWriter out = response.getWriter();
+    out.println("<html><head>"
+        + "<title>수업 등록</title>"
+        + "<meta http-equiv='Refresh' content='1;url=/lesson/list'>"
+        + "</head>");
+    out.println("<body><h1>수업 등록</h1>");
+    out.println("<p>저장하였습니다.</p>");
+    out.println("</body></html>");
   }
 
   @RequestMapping("/lesson/detail")
-  public void detail(Response response) throws Exception {
-    int no = response.requestInt("번호?");
+  public void detail(ServletRequest request, ServletResponse response) throws Exception {
 
-    Lesson lesson = lessonDao.findByNo(no);
+    int no = Integer.parseInt(request.getParameter("no"));
+
+    Lesson lesson = lessonService.get(no);
+
+    PrintWriter out = response.getWriter();
+    out.println("<html><head><title>수업 조회</title></head>");
+    out.println("<body><h1>수업 조회</h1>");
+
     if (lesson == null) {
-      response.println("해당 번호의 수업이 없습니다.");
+      out.println("<p>해당 번호의 수업이 없습니다.</p>");
       return;
     }
+    out.println("<form action='/lesson/update'>");
+    out.println("<table border='1'>");
+    out.printf("<tr> <th>번호</th> <td><input type='text' name='no' value='%d' readonly></td> </tr>\n", no);
+    out.println(String.format(
+        "<tr> <th>제목</th> <td><input type='text' name='title' value='%s'</td> </tr>", lesson.getTitle()));
+    out.println(String.format(
+        "<tr> <th>내용</th> <td><input type='text' name='contents' value='%s'</td> </tr>", lesson.getContents()));
+    out.println(String.format(
+        "<tr> <th>시작일</th> <td><input type='date' name='startDate' value='%s'</td> </tr>", lesson.getStartDate()));
+    out.println(String.format(
+        "<tr> <th>종료일</th> <td><input type='date' name='endDate' value='%s'</td> </tr>", lesson.getEndDate()));
+    out.println(String.format(
+        "<tr> <th>총수업시간</th> <td><input type='number' name='totalHours' value='%d'</td> </tr>", lesson.getTotalHours()));
+    out.println(String.format(
+        "<tr> <th>총수업시간</th> <td><input type='number' name='dayHours' value='%d'</td> </tr>", lesson.getDayHours()));
 
-    response.println(String.format("수업명: %s", lesson.getTitle()));
-    response.println(String.format("설명: %s", lesson.getContents()));
-    response.println(String.format("기간: %s ~ %s", lesson.getStartDate(), lesson.getEndDate()));
-    response.println(String.format("총수업시간: %d", lesson.getTotalHours()));
-    response.println(String.format("일수업시간: %d", lesson.getDayHours()));
+    out.println("</table>");
+    out.println("<p><a href='/lesson/list'>목록</a>"
+        + " <a href='/lesson/delete?no=" + lesson.getNo() + "'>삭제</a>"
+        + " <button type='submit'>변경</button>"
+        + "<p>");
+    out.println("</form>");
+    out.println("</body></html>");
   }
 
   @RequestMapping("/lesson/update")
-  public void update(Response response) throws Exception {
-    int no = response.requestInt("번호?");
+  public void update(ServletRequest request, ServletResponse response) throws Exception {
+    
+    Lesson lesson = new Lesson();
+    
+    lesson.setNo(Integer.parseInt(request.getParameter("no")));
+    lesson.setTitle(request.getParameter("title"));
+    lesson.setContents(request.getParameter("contents"));
+    lesson.setStartDate(Date.valueOf(request.getParameter("startDate")));
+    lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
+    lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
+    lesson.setDayHours(Integer.parseInt(request.getParameter("totalHours")));
 
-    Lesson lesson = lessonDao.findByNo(no);
-    if (lesson == null) {
-      response.println("해당 번호의 수업이 없습니다.");
-      return;
+    PrintWriter out = response.getWriter();
+    out.println("<html><head>"
+        + "<title>수업 변경</title>"
+        + "<meta http-equiv='Refresh' content='1;url=/lesson/list'>"
+        + "</head>");
+    out.println("<body><h1>수업 변경</h1>");
+    
+    if (lessonService.update(lesson) == 0) {
+      out.println("<p>해당 번호의 수업이 없습니다.</p>");
+    } else { 
+      out.println("<p>변경했습니다.</p>");
     }
-
-    // 변경할 값만 temp에 저장할 것이기 때문에 기존 데이터를 복제하지 않는다. 
-    Lesson temp = new Lesson();
-    temp.setNo(no);
-
-    // mybatis는 필드의 값이 null이 아니거나, 숫자인 경우 0인 아니면 해당 컬럼을 값을 update 한다.
-    String input = response.requestString(String.format(
-        "수업명(%s)?", lesson.getTitle()));
-    if (input.length() > 0)
-      temp.setTitle(input);
-
-    input = response.requestString(String.format(
-        "설명(%s)?", lesson.getContents()));
-    if (input.length() > 0)
-      temp.setContents(input);
-
-    input = response.requestString(String.format(
-        "시작일(%s)?", lesson.getStartDate()));
-    if (input.length() > 0)
-      temp.setStartDate(Date.valueOf(input));
-
-    input = response.requestString(String.format(
-        "종료일(%s)?", lesson.getEndDate()));
-    if (input.length() > 0)
-      temp.setEndDate(Date.valueOf(input));
-
-    input = response.requestString(String.format(
-        "총수업시간(%d)?", lesson.getTotalHours()));
-    if (input.length() > 0)
-      temp.setTotalHours(Integer.parseInt(input));
-
-    input = response.requestString(String.format(
-        "일수업시간(%d)?", lesson.getDayHours()));
-    if (input.length() > 0)
-      temp.setDayHours(Integer.parseInt(input));
-
-    if (temp.getTitle() != null
-        || temp.getContents() != null
-        || temp.getStartDate() != null
-        || temp.getEndDate() != null
-        || temp.getTotalHours() > 0
-        || temp.getDayHours() > 0) {
-
-      lessonDao.update(temp);
-      response.println("변경했습니다.");
-
-    } else {
-      response.println("변경 취소했습니다.");
-    }
+    
+    out.println("</body></html>");
   }
 
   @RequestMapping("/lesson/delete")
-  public void delete(Response response) throws Exception {
-    DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-    def.setName("tx1");
-    def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-    
-    TransactionStatus status = txManager.getTransaction(def);
-    
-    try {
-      int no = response.requestInt("번호?");
+  public void delete(ServletRequest request, ServletResponse response) throws Exception {
 
-      HashMap<String,Object> params = new HashMap<>();
-      params.put("lessonNo", no);
+    int no = Integer.parseInt(request.getParameter("no"));
 
-      List<PhotoBoard> boards = photoBoardDao.findAll(params);
-      for (PhotoBoard board : boards) {
-        photoFileDao.deleteByPhotoBoardNo(board.getNo());
-        photoBoardDao.delete(board.getNo());
-      }
+    PrintWriter out = response.getWriter();
+    out.println("<html><head>"
+        + "<title>수업정보 삭제</title>"
+        + "<meta http-equiv='Refresh' content='1;url=/lesson/list'>"
+        + "</head>");
+    out.println("<body><h1>수업 삭제</h1>");
 
-      if (lessonDao.delete(no) == 0) {
-        response.println("해당 번호의 수업이 없습니다.");
-        return;
-      }
-      response.println("삭제했습니다.");
-      txManager.commit(status);
-
-    } catch (Exception e) {
-      txManager.rollback(status);
-      response.println("삭제 중 오류 발생.");
+    if (lessonService.delete(no) == 0) {
+      out.println("<p>해당 번호의 수업이 없습니다.</p>");
+    } else { 
+      out.println("<p>삭제했습니다.</p>");
     }
+
+    out.println("</body></html>");
+  }
+  
+  @RequestMapping("/lesson/form")
+  public void form(ServletRequest request, ServletResponse response) throws Exception {
+    PrintWriter out = response.getWriter();
+    
+    out.println("<html>");
+    out.println("<head><title>새 수업</title></head>");
+    out.println("<body>");
+    out.println("<h1>새 수업</h1>");
+    out.println("<form action='/lesson/add'>");
+    out.println("<table border='1'>");
+    out.println("<tr>");
+    out.println("  <th>제목</th>");
+    out.println("  <td><input type='text' name='title'></td>");
+    out.println("</tr>");
+    out.println("<tr>");
+    out.println("  <th>내용</th>");
+    out.println("  <td><input type='text' name='contents'></td>");
+    out.println("</tr>");
+    out.println("<tr>");
+    out.println("  <th>시작일</th>");
+    out.println("  <td><input type='date' name='startDate'></td>");
+    out.println("</tr>");
+    out.println("<tr>");
+    out.println("  <th>종료일</th>");
+    out.println("  <td><input type='date' name='endDate'></td>");
+    out.println("</tr>");
+    out.println("<tr>");
+    out.println("  <th>총수업시간</th>");
+    out.println("  <td><input type='number' name='totalHours'></td>");
+    out.println("</tr>");
+    out.println("<tr>");
+    out.println("  <th>일수업시간</th>");
+    out.println("  <td><input type='number' name='dayHours'></td>");
+    out.println("</tr>");
+    out.println("</table>");
+    out.println("<p>");
+    out.println("  <button type='submit'>등록</button>");
+    out.println("  <a href='/lesson/list'>목록</a>");
+    out.println("</p>");
+    out.println("</form>");
+    out.println("</body>");
+    out.println("</html>");
   }
 }
