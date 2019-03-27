@@ -17,13 +17,3 @@ public class HelloCommand {
     out.println("</body></html>");
   }
 }
-
-
-
-
-
-
-
-
-
-
