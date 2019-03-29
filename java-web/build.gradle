@@ -19,6 +19,10 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+    // 멀티파트 형식의 데이터 처리 라이브러리
+
     // This dependency is found on compile classpath of this component and consumers.
     implementation 'com.google.guava:guava:26.0-jre'
 
