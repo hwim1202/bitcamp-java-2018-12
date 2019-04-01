@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.eomcs.lms.ServerApp;
+import com.eomcs.lms.InitServlet;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.service.MemberService;
 
@@ -18,7 +18,7 @@ public class MemberUpdateServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     
-    MemberService memberService = ServerApp.iocContainer.getBean(MemberService.class);
+    MemberService memberService = InitServlet.iocContainer.getBean(MemberService.class);
     Member member = new Member();
     request.setCharacterEncoding("UTF-8");
     member.setNo(Integer.parseInt(request.getParameter("no")));
