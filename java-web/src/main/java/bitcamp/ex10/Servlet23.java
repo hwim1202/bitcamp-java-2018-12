@@ -1,3 +1,4 @@
+// 쿠키(cookie) 읽기 - 사용 범위가 지정된 쿠키 읽기
 package bitcamp.ex10;
 
 import java.io.IOException;
@@ -19,22 +20,22 @@ public class Servlet23 extends HttpServlet {
       HttpServletResponse response)
       throws ServletException, IOException {
     
-    Cookie c1 = new Cookie("v1", "aaa");
+    // 테스트 방법:
+    // => http://localhost:8080/java-web/ex10/a/b/c/s23
+    //
     
-    Cookie c2 = new Cookie("v2", "bbb");
-    c2.setPath("/java-web/ex10/a");
-    
-    Cookie c3 = new Cookie("v3", "ccc");
-    c3.setPath("/java-web");
-    
-    response.addCookie(c1);
-    response.addCookie(c2);
-    response.addCookie(c3);
+    Cookie[] cookies = request.getCookies();
     
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    
-    out.println("/ex10/s21 - 쿠키 보냈습니다.");
 
+    if (cookies != null) {
+      for (Cookie c : cookies) {
+        out.printf("%s=%s\n", c.getName(), c.getValue());
+      }
+    }
+    
   }
 }
+
+

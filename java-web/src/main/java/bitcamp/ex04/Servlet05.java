@@ -1,3 +1,4 @@
+// 멀티파트 파일 업로드 처리하기 - Servlet 3.0의 기본 라이브러리 사용
 package bitcamp.ex04;
 
 import java.io.IOException;
@@ -10,51 +11,57 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
-// 멀티파트 형식의 데이터를 처리할 서블릿으로 선언
+// 멀티파트 형식의 데이터를 처리할 서블릿으로 선언하라.
+// => web.xml에 설정할 수도 있고, 다음과 같이 애노테이션으로 설정할 수도 있다.
+//
 //@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 //@WebServlet("/ex04/s5")
 public class Servlet05 extends GenericServlet {
-
+  
   private static final long serialVersionUID = 1L;
   private String uploadDir;
-
+  
   @Override
   public void init() throws ServletException {
-    // init(ServletConfig)가 호출될 때 이 메서드를 호출한다.
-    // 1) 파일을 저장할 디렉토리 경로를 준비한다.
     this.uploadDir = this.getServletContext().getRealPath("/upload");
   }
-
+  
   @Override
-  public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+  public void service(ServletRequest req, ServletResponse res)
+      throws ServletException, IOException {
     
+    // 테스트
+    // - http://localhost:8080/java-web/ex04/test05.html 실행
+    //
+    
+    // Servlet 3.0의 멀티파트 처리 기능을 이용할 때는
+    // 원래 하던대로 클라이언트가 보낸 데이터의 인코딩을 지정하라.
     req.setCharacterEncoding("UTF-8");
-
-    // 파라미터로 받은 ServletRequest를 원래의 타입으로 변환
+    
+    // 파라미터로 받은 ServletRequest를 원래의 타입으로 변환하라.
     HttpServletRequest httpReq = (HttpServletRequest) req;
-
+    
     res.setContentType("text/html;charset=UTF-8");
     PrintWriter out = res.getWriter();
-
     out.println("<html>");
-    out.println("<head><title>servlet04</title><head>");
+    out.println("<head><title>servlet04</title></head>");
     out.println("<body><h1>파일 업로드 결과</h1>");
-
+    
     // 일반 폼 데이터를 원래 하던 방식대로 값을 꺼낸다.
-    out.printf("이름=%s\n", httpReq.getParameter("name"));
-    out.printf("나이=%s\n", httpReq.getParameter("age"));
-
+    out.printf("이름=%s<br>\n", httpReq.getParameter("name"));
+    out.printf("나이=%s<br>\n", httpReq.getParameter("age"));
+    
     // 파일 데이터는 getPart()를 이용한다.
     Part photoPart = httpReq.getPart("photo");
-    String filename = UUID.randomUUID().toString();
+    String filename = "";
     if (photoPart.getSize() > 0) {
       // 파일을 선택해서 업로드 했다면,
+      filename = UUID.randomUUID().toString();
       photoPart.write(this.uploadDir + "/" + filename);
     }
-    out.printf("사진=%s\n", filename);
-    out.printf("<img src='../upload/%s'>\n", filename);
-    out.println("<body><html>");
-
-
+    out.printf("사진=%s<br>\n", filename);
+    out.printf("<img src='../upload/%s'><br>\n", filename);
+    out.println("</body></html>");
   }
 }
+

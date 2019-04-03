@@ -1,3 +1,4 @@
+// 클라이언트로 출력하기 - HTML 출력하기
 package bitcamp.ex03;
 
 import java.io.IOException;
@@ -17,7 +18,9 @@ public class Servlet03 extends GenericServlet {
   public void service(ServletRequest req, ServletResponse res)
       throws ServletException, IOException {
     
-    res.setContentType("text/html;charset=UTF-8");
+    // HTML 출력할 때 MIME 타입에 HTML을 지정하지 않으면 
+    // 일반 텍스트 그래도 출력한다.
+    res.setContentType("text/html;charset=UTF-8"); // UTF-16 ==> UTF-8
     PrintWriter out = res.getWriter();
     
     out.println("<!DOCTYPE html>");

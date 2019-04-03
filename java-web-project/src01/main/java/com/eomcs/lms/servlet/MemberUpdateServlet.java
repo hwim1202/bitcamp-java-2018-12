@@ -24,7 +24,6 @@ public class MemberUpdateServlet extends HttpServlet {
 
     MemberService memberService = InitServlet.iocContainer.getBean(MemberService.class);
 
-
     Member member = new Member();
     member.setNo(Integer.parseInt(request.getParameter("no")));
     member.setName(request.getParameter("name"));
