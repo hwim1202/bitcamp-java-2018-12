@@ -42,13 +42,12 @@ public class MemberUpdateServlet extends HttpServlet {
     }
 
     if (memberService.update(member) > 0) {
-      response.sendRedirect("list");
+      request.setAttribute("viewUrl", "redirect:list");
       return;
+    } else {
+      request.setAttribute("error.title", "회원 변경");
+      request.setAttribute("error.content", "해당 번호의 회원이 없습니다.");
     }
-    request.setAttribute("error.title", "회원 변경");
-    request.setAttribute("error.content", "해당 번호의 회원이 없습니다.");
-    
-    request.getRequestDispatcher("/error.jsp").forward(request, response);
   }
 
 

@@ -1,8 +1,8 @@
 // Gradle에 플러그인 추가한다. 
 plugins {
     id 'java'   // 자바 빌드 명령을 사용할 수 있다.
-    id 'eclipse-wtp'
-    id 'war'
+    id 'eclipse-wtp' // 자바 웹 프로젝트 플러그인
+    id 'war' // 웹 아키이브 파일(.war)을 다루는 플러그인
 }
 
 // 자바 프로그램에서 사용하는 외부 라이브러리의 저장소 
@@ -13,7 +13,9 @@ repositories {
 
 // 프로젝트에서 사용할 외부 라이브러리 정보 
 dependencies {
-    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    // servlet-api
+    // => 프로젝트를 컴파일 할 때만 사용할 라이브러리라면 providedCompile 메서드를 사용하라.
+    // => 이 메서드로 지정된 라이브러리는 배포할 때 배포 파일(.war, .jar 등)에 포함되지 않는다. 
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 
     //mybatis persistence framework
@@ -40,16 +42,9 @@ dependencies {
     // log4j 2.x 라이브러리
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
     
+    // JSTL 명세를 구현한 라이브러리
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
     
     implementation 'com.google.guava:guava:26.0-jre'
     testImplementation 'junit:junit:4.12'
 }
-
-
-
-
-
-
-
-
-
