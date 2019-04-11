@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+
+<html>
+<body>
+
+  <script>
+    var ta = document.getElementById("ta");
+    var f1 = document.getElementById("f1");
+
+    ta.onkeyup = function() {
+      f1.contentWindow.document.body.innerHTML = ta.value;
+    }
+    </script>
+</body>
+</html>

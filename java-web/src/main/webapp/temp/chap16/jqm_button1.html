@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS class Example</title>
+    <style>
+        .type1 {
+            text-align: center;
+        }
+    </style>
+    
+<script>
+    str = 'Like father, like son.';
+    // like를 찾는다. i와 g는 옵션으로 insensitive, globally를 의미한다. 
+    result = str.match(/like/ig);
+    document.writeln(result + '<br>');
+</script>
+</head>
+
+<body>
+    <h1 class="type1">class가 type1인 헤딩입니다.</h1>
+    <p class="type1">class가 type1인 단락입니다</p>
+</body>
+</html>
