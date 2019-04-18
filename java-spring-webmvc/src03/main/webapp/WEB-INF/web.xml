@@ -12,21 +12,22 @@
  <display-name>java-spring-webmvc</display-name>
 
  <servlet>
-  <servlet-name>app1</servlet-name>
+  <servlet-name>app5</servlet-name>
   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+   <param-name>contextClass</param-name>
+   <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </init-param>
+  <init-param>
+   <param-name>contextConfigLocation</param-name>
+   <param-value>bitcamp.AppConfig</param-value>
+  </init-param>
   <load-on-startup>1</load-on-startup>
  </servlet>
-
  <servlet-mapping>
-  <servlet-name>app1</servlet-name>
-  <url-pattern>/app1/*</url-pattern>
+  <servlet-name>app5</servlet-name>
+  <url-pattern>/app5/*</url-pattern>
  </servlet-mapping>
-
- <welcome-file-list>
-  <welcome-file>index.html</welcome-file>
-  <welcome-file>index.htm</welcome-file>
-  <welcome-file>default.htm</welcome-file>
- </welcome-file-list>
 
 </web-app>
 
