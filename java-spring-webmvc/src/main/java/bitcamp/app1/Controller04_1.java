@@ -24,7 +24,7 @@ public class Controller04_1 {
   @Autowired
   ServletContext sc;
 
-  // 프로트 컨트롤러(DispatcherServlet)로부터 받고 싶은 값이 있다면
+  // 프론트 컨트롤러(DispatcherServlet)로부터 받고 싶은 값이 있다면
   // 요청 핸들러를 정의할 때 받고 싶은 타입의 아규먼트를 선언하라
   // 그러면 프론트 컨트롤러가 메서드를 호출할 때 해당 타입의 값을 넘겨줄 것이다
   @GetMapping("h1")

@@ -27,15 +27,28 @@ public class Controller04_6 {
 
     out.printf("Accept=%s\n", accept);
     out.printf("User-Agent=%s\n", userAgent);
-    out.println(userAgent.matches("Chrome"));
+    
+    if (userAgent.matches(".*Chrome.*")) {
+      out.println("chrome browser");
+    }
+    else if (userAgent.matches(".*Safari.*")) {
+      out.println("safari browser");
+    }
+    else if (userAgent.matches(".*Firefox.*")) {
+      out.println("firefox browser");
+    }
+    else {
+      out.println("etc browser");
+    }
   }
 
   public static void main(String[] args) {
-    //    String str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36";
-    String str = "AA BB Aa Bb $12,000";
+        String str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36";
 
     // 정규 표현식으로 패턴을 정의한다
-    String regex = "....";
+//        String regex = "Chrome";
+        String regex = "Chrome.*Safari";
+//        String regex = "^(Chrome).*Safari";
     Pattern pattern = Pattern.compile(regex);
 
     // 주어진 문자열에서 패턴과 일치하는 정보를 찾는다
@@ -44,9 +57,6 @@ public class Controller04_6 {
     // 일치 여부를 확인한다
     if (matcher.find()) {
       System.out.println("OK!");
-      //      for (int i=1; i<matcher.groupCount(); i++) {
-      System.out.println(matcher.group(0));
-      //      }
     }
   }
 }
