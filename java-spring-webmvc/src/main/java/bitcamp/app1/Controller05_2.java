@@ -40,6 +40,7 @@ public class Controller05_2 {
   @GetMapping("h3")
   public View handler3() {
     return new JstlView("/WEB-INF/jsp/c05_2.jsp");
+    
   }
 
   @GetMapping("h4")

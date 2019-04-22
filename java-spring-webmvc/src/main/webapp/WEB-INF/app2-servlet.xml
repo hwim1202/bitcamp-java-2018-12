@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:p="http://www.springframework.org/schema/p"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -9,9 +10,14 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
   
   <context:component-scan base-package="bitcamp.app2"/>
+  <!-- <context:annotation-config/>를 포함하므로 따로 선언할 필요 없으나 @MatrixVariable은 처리할 수 없으므로 따로 선언해야함 -->
+  
+  <mvc:annotation-driven enable-matrix-variables="true"/>
   
   <!-- 기존의 뷰 리졸버를 대체한다 -->
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -20,6 +26,34 @@
     <property name="suffix" value=".jsp"/>
   </bean>
   
+  <!-- 인터셉터 배치하기 -->
+  <mvc:interceptors>
+    
+    <mvc:interceptor>
+      <!-- /** 는 하위 모든 폴더 -->
+      <mvc:mapping path="/c04_1/**"/>
+      <bean class="bitcamp.app2.Controller04_1_Interceptor1"/>
+    </mvc:interceptor>
+    
+    <mvc:interceptor>
+      <mvc:mapping path="/c04_1/a/*"/>
+      <bean class="bitcamp.app2.Controller04_1_Interceptor2"/>
+    </mvc:interceptor>
+    
+    <bean class="bitcamp.app2.Controller04_1_Interceptor3"/>
+
+    <mvc:interceptor>
+      <!-- /** 는 하위 모든 폴더 -->
+      <mvc:mapping path="/c04_1/**"/>
+      <!-- 특정 URL 제외 -->
+      <mvc:exclude-mapping path="/c04_1/a/**"/>
+      <bean class="bitcamp.app2.Controller04_1_Interceptor4"/>
+    </mvc:interceptor>
+    
+  </mvc:interceptors>
+  
+  
+
 </beans>
 
 
