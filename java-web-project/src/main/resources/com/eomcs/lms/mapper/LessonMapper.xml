@@ -78,6 +78,11 @@
     delete from lms_lesson 
     where lesson_id = #{value}
   </delete>
+  
+  <select id="countAll" resultType="int">
+    select count(*) from lms_lesson
+  </select>
+  
 </mapper>
 
 
