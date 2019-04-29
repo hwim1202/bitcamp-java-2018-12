@@ -11,6 +11,9 @@
 
 // 함수를 생성자처럼 사용하기  
 function createScore(name, kor, eng, math) {
+	
+	console.log(this);
+	
 	// 자바스크립트의 일반 함수를 생성자처럼 사용할 때는 
 	// new 명령을 사용하여 외부에서 빈 객체를 생성한 후, 
 	// 이 함수를 호출한다.
@@ -57,6 +60,10 @@ console.log(scores[0]);
 console.log(scores[1]);
 console.log(scores[2]);
 console.log(scores[0].toString());
+
+// var obj = createScore("오호라", 100, 100, 100);
+// new를 통해 호출해야 값이 들어갈 객체가 생성된다
+
 </script>
 </body>
 </html>

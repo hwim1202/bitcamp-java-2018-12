@@ -59,15 +59,18 @@ btn2.onclick = function() {
 //
 var btn3 = document.querySelector("#btn3");
 btn3.addEventListener("click", () => {
-    var str = "Hello!!";
+	console.log(this); // arrow function의 소속은 window 객체이다
+    var str = "hi1!!";
     window.alert(str);
 });
 btn3.addEventListener("click", () => {
-    var str = "Hello2!!";
+	console.log(this);
+    var str = "hi2!!";
     window.alert(str);
 });
-btn3.addEventListener("click", () => {
-    var str = "Hello3!!";
+btn3.addEventListener("click", function() {
+	console.log(this); // 일반 함수 문법으로 정의한 리스너의 소속은 태그 객체이다
+    var str = "hi3!!";
     window.alert(str);
 });
 
