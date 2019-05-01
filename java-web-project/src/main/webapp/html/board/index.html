@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>게시물 목록</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/java-web-project/css/common.css">
+</head>
+
+<body>
+
+<header>
+
+</header>
+
+
+
+<div class="container">
+<h1>게시물 목록2</h1>
+<p><a href='form' class="btn btn-primary btn-sm">새 글</a></p>
+
+<div class="bit-list">
+<table class="table table-hover">
+<thead>
+  <tr> 
+    <th scope="col">번호</th>
+    <th scope="col">제목</th>
+    <th scope="col">등록일</th>
+    <th scope="col">조회수</th>
+  </tr>
+</thead>
+<tbody>
+<tr> 
+    <th scope="row">36</th>
+    <td><a href='36'><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Jason_Momoa_Supercon_2014.jpg/170px-Jason_Momoa_Supercon_2014.jpg"></a></td> 
+    <td>2019-04-29</td> 
+    <td>3</td>
+  </tr>
+<tr> 
+    <th scope="row">35</th>
+    <td><a href='35'>okok</a></td> 
+    <td>2019-04-25</td> 
+    <td>8</td>
+  </tr>
+<tr> 
+    <th scope="row">34</th>
+    <td><a href='34'>ohora</a></td> 
+    <td>2019-04-25</td> 
+    <td>0</td>
+  </tr>
+</tbody>
+</table>
+</div><!-- .bit-list -->
+
+<nav aria-label="목록  페이지 이동">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled"><a class="page-link"
+        href="?pageNo=0&pageSize=3">이전</a></li>
+    <li class="page-item active"><span class="page-link">1</span></li>
+    <li class="page-item "><a class="page-link"
+        href="?pageNo=2&pageSize=3">다음</a></li>
+  </ul>
+</nav>
+</div><!-- .container -->
+
+<script src="/java-web-project/node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="/java-web-project/node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="/java-web-project/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+var header = document.querySelector("body > header");
+
+	// 헤더 가져오기
+(function() {
+	var xhr = new XMLHttpRequest()
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState != 4 || xhr.status != 200)
+			return;
+		header.innerHTML = xhr.responseText()
+	};
+	xhr.open("GET", "../header.html", true)
+	xhr.send()
+}) ();
+	
+	// JSON 형식의 데이터 목록 가져오기
+	(function() {
+  var xhr = new XMLHttpRequest()
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState != 4 || xhr.status != 200)
+      return;
+    header.innerHTML = xhr.responseText()
+  };
+  xhr.open("GET", "../header.html", true)
+  xhr.send()
+}) ();
+	
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
