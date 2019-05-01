@@ -1,22 +1,24 @@
-// 스프링 인터셉터 다루기
+// JSON 컨텐트 출력하기 - @RestController
 package bitcamp.app2;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import java.util.HashMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/c05_1")
-public class Controller05_1 {
-  
+@RestController
+// 페이지 컨트롤러를 @RestController로 선언하면
+// 리턴 값이 HttpMessageConverter에 의해 자동으로 변환된다
+// @ResponseBody를 붙일 필요가 없다
+@RequestMapping("/c05_2")
+public class Controller05_2 {
+
   ArrayList<Board> list = new ArrayList<>();
-  
-  public Controller05_1() {
-    
+
+  public Controller05_2() {
+
     list.add(new Board(1, "제목입니다1", "내용", "홍길동", 10, Date.valueOf("2019-5-1")));
     list.add(new Board(2, "제목입니다1", "내용", "홍길동2", 11, Date.valueOf("2019-5-2")));
     list.add(new Board(3, "제목입니다1", "내용", "홍길동3", 12, Date.valueOf("2019-5-3")));
@@ -31,32 +33,29 @@ public class Controller05_1 {
     list.add(new Board(12, "제목입니다1", "내용", "홍길동12", 21, Date.valueOf("2019-5-12")));
     list.add(new Board(13, "제목입니다1", "내용", "홍길동13", 22, Date.valueOf("2019-5-13")));
   }
-  
-  // 1) JSP에서 JSON 형식의 콘텐트 출력하기
-  // http://localhost:8080/java-spring-webmvc/app2/c05_1/h1
+
+  // http://localhost:8080/java-spring-webmvc/app2/c05_2/h1
   @GetMapping(value="h1")
-  public void handler1(Model model) {
-    model.addAttribute("list", this.list);
+  public Object handler1() {
+    return this.list; //JSON 형식의 문자열은 자동으로 UTF-8로 인코딩 된다
+  }
+
+  @GetMapping(value="h2", produces="text/plain;charset=UTF-8")
+  public String handler2() {
+    return "안녕하세요";
   }
   
-  // 2) Google Gson 라이브러리를 사용하여 JSON 형식의 콘텐트 출력하기
-  //    mvnrepository.com에서 gson 라이브러리 가져오기
-//  @GetMapping(value="h2", produces="text/plain;charset=UTF-8")
-//  @ResponseBody
-//  public String handler2() {
-//    
-//    return new Gson().toJson(this.list);
-//  }
-  
-  // 2) Google Gson 라이브러리를 사용하여 JSON 형식의 콘텐트 출력하기 II
-  //    => 페이지 컨트롤러의 리턴 값이 String이 아니면
-  //    => 프론트 컨트롤러는 Google의 Gson 라이브러리나 Jackson 라이브러리를 사용하여
-  //    => 자동으로 JSON 형식의 문자열로 만들어 클라이언트로 출력한다
-  //    => 단, Gson 또는 Jackson 라이브러리가 있어야 한다
   @GetMapping(value="h3")
-  @ResponseBody
-  public Object handler3() {
-
-    return this.list;
+  public int handler3() {
+    return 100;
+  }
+  
+  @GetMapping(value="h4")
+  public Object handler4() {
+    HashMap<String,Object> content = new HashMap<>();
+    content.put("v1", 100);
+    content.put("v2", "Hello");
+    
+    return content;
   }
 }
