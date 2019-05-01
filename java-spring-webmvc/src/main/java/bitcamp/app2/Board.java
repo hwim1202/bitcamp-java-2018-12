@@ -1,6 +1,7 @@
 package bitcamp.app2;
 
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Board {
   
@@ -9,6 +10,8 @@ public class Board {
   protected String content;
   protected String writer;
   protected int viewCount;
+  
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   protected Date createdDate;
   
   public Board() {
@@ -64,6 +67,8 @@ public class Board {
   public Date getCreatedDate() {
     return createdDate;
   }
+  
+//  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }

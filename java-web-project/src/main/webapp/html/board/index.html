@@ -5,17 +5,12 @@
 <head>
   <meta charset="UTF-8">
   <title>게시물 목록</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="/java-web-project/css/common.css">
 </head>
-
 <body>
 
-<header>
-
-</header>
-
-
+<header></header>
 
 <div class="container">
 <h1>게시물 목록2</h1>
@@ -31,36 +26,15 @@
     <th scope="col">조회수</th>
   </tr>
 </thead>
-<tbody>
-<tr> 
-    <th scope="row">36</th>
-    <td><a href='36'><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Jason_Momoa_Supercon_2014.jpg/170px-Jason_Momoa_Supercon_2014.jpg"></a></td> 
-    <td>2019-04-29</td> 
-    <td>3</td>
-  </tr>
-<tr> 
-    <th scope="row">35</th>
-    <td><a href='35'>okok</a></td> 
-    <td>2019-04-25</td> 
-    <td>8</td>
-  </tr>
-<tr> 
-    <th scope="row">34</th>
-    <td><a href='34'>ohora</a></td> 
-    <td>2019-04-25</td> 
-    <td>0</td>
-  </tr>
-</tbody>
+<tbody></tbody>
 </table>
 </div><!-- .bit-list -->
 
 <nav aria-label="목록  페이지 이동">
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled"><a class="page-link"
-        href="?pageNo=0&pageSize=3">이전</a></li>
-    <li class="page-item active"><span class="page-link">1</span></li>
-    <li class="page-item "><a class="page-link"
-        href="?pageNo=2&pageSize=3">다음</a></li>
+    <li id="prevPage" class="page-item"><a class="page-link" href="?pageNo=0&pageSize=3">이전</a></li>
+    <li id="currPage" class="page-item active"><span class="page-link">1</span></li>
+    <li id="nextPage" class="page-item"><a class="page-link" href="?pageNo=2&pageSize=3">다음</a></li>
   </ul>
 </nav>
 </div><!-- .container -->
@@ -69,7 +43,13 @@
 <script src="/java-web-project/node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="/java-web-project/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script>
-var header = document.querySelector("body > header");
+var pageNo = 1,
+    pageSize = 3,
+    header = document.querySelector('body > header'),
+    tbody = document.querySelector('tbody'),
+    prevPageLi = document.querySelector('#prevPage'),
+    nextPageLi = document.querySelector('#nextPage'),
+    currSpan = document.querySelector('#currPage > span');
 
 	// 헤더 가져오기
 (function() {
@@ -77,23 +57,70 @@ var header = document.querySelector("body > header");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState != 4 || xhr.status != 200)
 			return;
-		header.innerHTML = xhr.responseText()
+		header.innerHTML = xhr.responseText
 	};
 	xhr.open("GET", "../header.html", true)
 	xhr.send()
 }) ();
 	
 	// JSON 형식의 데이터 목록 가져오기
-	(function() {
+	function loadList(pn) {
   var xhr = new XMLHttpRequest()
   xhr.onreadystatechange = function() {
     if (xhr.readyState != 4 || xhr.status != 200)
       return;
-    header.innerHTML = xhr.responseText()
+    
+    // 서버에서 받은 JSON 형식의 데이터를 JavaScript 객체로 변환
+    var obj = JSON.parse(xhr.responseText);
+    
+    // 받은 데이터 중 페이지 번호를 글로벌 변수에 저장한다
+    pageNo = obj.pageNo;
+    
+    	tbody.innerHTML = ''; // 이전 출력한 내용을 제거
+    	
+    	// tr 태그를 생성하여 테이블 데이터를 갱신
+    for (data of obj.list) {
+    	var tr = "<tr>"
+    	+ '<th scope="row">' + data.no +'</th>'
+      + '<td><a href="'+ data.no +'">' + data.contents + '</a></td>'
+      + '<td>' + data.createdDate + '</td>'
+      + '<td>' + data.viewCount + '</td>'
+      + '</tr>';
+      tbody.innerHTML = tbody.innerHTML + tr;
+    }
+    // 현재 페이지의 번호를 갱신한다
+    currSpan.innerHTML = String(pageNo)
+    
+    if (pageNo == 1) {
+    // 1페이지일 경우 버튼을 비활성화 한다
+    prevPageLi.className = prevPage.className + ' disabled'
+    } else {
+      prevPageLi.className = prevPage.className.replace(' disabled', '')
+    }
+    
+    // 마지막 페이지일 경우 버튼을 비활성화 한다
+    if (pageNo == obj.totalPage) {
+    nextPageLi.className = nextPage.className + ' disabled'
+    } else {
+      nextPageLi.className = nextPage.className.replace(' disabled', '')
+    }
   };
-  xhr.open("GET", "../header.html", true)
+  xhr.open('GET', '../../app/json/board/list?pageNo=' + pn + '&pageSize=' + pageSize, true)
   xhr.send()
-}) ();
+} // loadList()
+	
+	document.querySelector('#prevPage > a').onclick = (e) => {
+		e.preventDefault()
+		loadList(pageNo -1)
+	};
+	
+	document.querySelector('#nextPage > a').onclick = (e) => {
+    e.preventDefault()
+    loadList(pageNo +1)
+  };
+  
+  // 페이지를 출력한 후 제일 처음으로 1페이지를 로딩한다
+  loadList(1)
 	
 </script>
 
