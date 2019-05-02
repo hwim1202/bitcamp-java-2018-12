@@ -5,7 +5,7 @@
 <html>
 <head>
   <title>게시물 조회</title>
-<jsp:include page="../commonCss.jsp"/>
+  <jsp:include page="../commonCss.jsp"/>
 </head>
 <body>
 
@@ -26,7 +26,6 @@
              name='no' value='${board.no}' readonly>
     </div>
   </div>
-  
   <div class="form-group row">
     <label for="contents" class="col-sm-2 col-form-label">내용</label>
     <div class="col-sm-8">
