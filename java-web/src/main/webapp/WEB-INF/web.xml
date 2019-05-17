@@ -153,6 +153,7 @@
     <url-pattern>/ex06/s4</url-pattern>
   </servlet-mapping>
   
+  <!-- 외부 라이브러리 파일(java-web-library.jar)에 있는 서블릿을 배치한다. -->
   <servlet>
     <servlet-name>HelloServlet</servlet-name>
     <servlet-class>bitcamp.HelloServlet</servlet-class>
@@ -161,8 +162,20 @@
   <servlet-mapping>
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/lib/hello</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
   
+  <!-- /webapp/fileupload/*.html 예제에서 사용할 파일 업로드를 처리하는 JSP -->
+  <servlet>
+    <servlet-name>upload.jsp</servlet-name>
+    <jsp-file>/fileupload/upload.jsp</jsp-file>
+    <multipart-config>
+      <max-file-size>100000000</max-file-size>
+    </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>upload.jsp</servlet-name>
+    <url-pattern>/fileupload/upload.jsp</url-pattern>
+  </servlet-mapping>
   
   
   
